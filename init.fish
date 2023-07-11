@@ -59,7 +59,7 @@ function autovenv --on-variable PWD -d "Automatic activation of Python virtual e
     if test -z "$VIRTUAL_ENV" -a -e "$_source"
         source "$_source"
         if test "$autovenv_announce" = "yes"
-            echo "Activated Virtual Environment ($__autovenv_new)"
+            echo (set_color yellow)"Activated Virtual Environment ($__autovenv_new)"(set_color normal)
         end
     # Next we check to see if we're already in an active venv. If so we proceed with further tests.
     else if test -n "$VIRTUAL_ENV"
@@ -69,7 +69,7 @@ function autovenv --on-variable PWD -d "Automatic activation of Python virtual e
         if test -z "$_dir" -a ! -e "$_source"
             deactivate
             if test "$autovenv_announce" = "yes"
-                echo "Deactivated Virtual Enviroment ($__autovenv_new)"
+                echo (set_color grey)"Deactivated Virtual Environment ($__autovenv_new)"(set_color normal)
                 set -e __autovenv_new
                 set -e __autovenv_old
             end
@@ -78,7 +78,7 @@ function autovenv --on-variable PWD -d "Automatic activation of Python virtual e
             deactivate
             source "$_source"
             if test "$autovenv_announce" = "yes"
-                echo "Switched Virtual Environments ($__autovenv_old => $__autovenv_new)"
+                echo (set_color yellow)"Switched Virtual Environments ($__autovenv_old => $__autovenv_new)"(set_color normal)
             end
         end
     end
